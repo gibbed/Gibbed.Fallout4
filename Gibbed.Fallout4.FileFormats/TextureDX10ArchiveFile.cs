@@ -86,8 +86,8 @@ namespace Gibbed.Fallout4.FileFormats
                         DataOffset = rawMipMap.DataOffset,
                         DataCompressedSize = rawMipMap.DataCompressedSize,
                         DataUncompressedSize = rawMipMap.DataUncompressedSize,
-                        Unknown10 = rawMipMap.Unknown10,
-                        Unknown12 = rawMipMap.Unknown12,
+                        IndexStart = rawMipMap.IndexStart,
+                        IndexEnd = rawMipMap.IndexEnd,
                     };
                 }
 
@@ -133,8 +133,8 @@ namespace Gibbed.Fallout4.FileFormats
             public long DataOffset;
             public uint DataCompressedSize;
             public uint DataUncompressedSize;
-            public ushort Unknown10;
-            public ushort Unknown12;
+            public ushort IndexStart;
+            public ushort IndexEnd;
         }
 
         private struct RawEntry
@@ -188,8 +188,8 @@ namespace Gibbed.Fallout4.FileFormats
             public long DataOffset;
             public uint DataCompressedSize;
             public uint DataUncompressedSize;
-            public ushort Unknown10;
-            public ushort Unknown12;
+            public ushort IndexStart;
+            public ushort IndexEnd;
             public uint Reserved; // BAADF00D
 
             internal static RawMipMap Read(Stream input, Endian endian)
@@ -198,8 +198,8 @@ namespace Gibbed.Fallout4.FileFormats
                 instance.DataOffset = input.ReadValueS64(endian);
                 instance.DataCompressedSize = input.ReadValueU32(endian);
                 instance.DataUncompressedSize = input.ReadValueU32(endian);
-                instance.Unknown10 = input.ReadValueU16(endian);
-                instance.Unknown12 = input.ReadValueU16(endian);
+                instance.IndexStart = input.ReadValueU16(endian);
+                instance.IndexEnd = input.ReadValueU16(endian);
                 instance.Reserved = input.ReadValueU32(endian);
                 return instance;
             }
