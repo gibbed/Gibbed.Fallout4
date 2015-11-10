@@ -21,23 +21,21 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Gibbed.IO;
 
 namespace Gibbed.Fallout4.FileFormats
 {
-    public class ArchiveFile
+    public abstract class ArchiveFile
     {
         public const uint Signature = 0x58445442; // 'BTDX'
 
+        private readonly ArchiveType _Type;
         private Endian _Endian;
-        private readonly List<Entry> _Entries;
 
-        public ArchiveFile()
+        public ArchiveFile(ArchiveType type)
         {
-            this._Entries = new List<Entry>();
+            this._Type = type;
         }
 
         public Endian Endian
@@ -46,20 +44,13 @@ namespace Gibbed.Fallout4.FileFormats
             set { this._Endian = value; }
         }
 
-        public List<Entry> Entries
-        {
-            get { return this._Entries; }
-        }
-
-        public void Serialize(Stream output)
+        public virtual void Serialize(Stream output)
         {
             throw new NotImplementedException();
         }
 
-        public void Deserialize(Stream input)
+        public virtual void Deserialize(Stream input)
         {
-            var basePosition = input.Position;
-
             var magic = input.ReadValueU32(Endian.Little);
             if (magic != Signature && magic.Swap() != Signature)
             {
@@ -67,7 +58,27 @@ namespace Gibbed.Fallout4.FileFormats
             }
             var endian = magic == Signature ? Endian.Little : Endian.Big;
 
-            // TODO(rick): determine if version/generalMagic are actually a count and is a sequential block ID
+            var version = input.ReadValueU32(endian);
+            if (version != 1)
+            {
+                throw new FormatException();
+            }
+
+            var type = (ArchiveType)input.ReadValueU32(endian);
+            if (type != this._Type)
+            {
+                throw new FormatException();
+            }
+        }
+
+        public static ArchiveType ReadType(Stream input)
+        {
+            var magic = input.ReadValueU32(Endian.Little);
+            if (magic != Signature && magic.Swap() != Signature)
+            {
+                throw new FormatException();
+            }
+            var endian = magic == Signature ? Endian.Little : Endian.Big;
 
             var version = input.ReadValueU32(endian);
             if (version != 1)
@@ -75,131 +86,7 @@ namespace Gibbed.Fallout4.FileFormats
                 throw new FormatException();
             }
 
-            var generalMagic = input.ReadValueU32(endian);
-            if (generalMagic != 0x4C524E47) // 'GNRL'
-            {
-                throw new FormatException();
-            }
-
-            var entryCount = input.ReadValueS32(endian);
-            var entryNameTableOffset = input.ReadValueS64(endian);
-
-            var rawEntries = new RawEntry[entryCount];
-            for (int i = 0; i < entryCount; i++)
-            {
-                rawEntries[i] = RawEntry.Read(input, endian);
-            }
-
-            var entryNames = new string[entryCount];
-            if (entryCount > 0)
-            {
-                input.Position = basePosition + entryNameTableOffset;
-                for (int i = 0; i < entryCount; i++)
-                {
-                    var nameLength = input.ReadValueU16(endian);
-                    var name = input.ReadString(nameLength, Encoding.ASCII);
-                    entryNames[i] = name;
-                }
-            }
-
-            // we're assuming the entry names match up in order with the entries
-            var entries = new Entry[entryCount];
-            for (int i = 0; i < entryCount; i++)
-            {
-                var rawEntry = rawEntries[i];
-                // TODO(rick): validate flags
-                entries[i] = new Entry()
-                {
-                    Name = entryNames[i],
-                    NameHash = rawEntry.NameHash,
-                    Type = rawEntry.Type,
-                    DirectoryNameHash = rawEntry.DirectoryNameHash,
-                    Flags = rawEntry.Flags,
-                    DataOffset = rawEntry.DataOffset,
-                    DataCompressedSize = rawEntry.DataCompressedSize,
-                    DataUncompressedSize = rawEntry.DataUncompressedSize,
-                };
-            }
-
-            this._Endian = endian;
-            this._Entries.Clear();
-            this._Entries.AddRange(entries);
-        }
-
-        [Flags]
-        public enum EntryFlags : uint
-        {
-            None = 0u,
-            Unknown0 = 1u << 0,
-            Unknown1 = 1u << 1,
-            Unknown2 = 1u << 2,
-            Unknown3 = 1u << 3,
-            Unknown4 = 1u << 4,
-            Unknown5 = 1u << 5,
-            Unknown6 = 1u << 6,
-            Unknown7 = 1u << 7,
-            Unknown8 = 1u << 8,
-            Unknown9 = 1u << 9,
-            Unknown10 = 1u << 10,
-            Unknown11 = 1u << 11,
-            Unknown12 = 1u << 12,
-            Unknown13 = 1u << 13,
-            Unknown14 = 1u << 14,
-            Unknown15 = 1u << 15,
-            Unknown16 = 1u << 16,
-            Unknown17 = 1u << 17,
-            Unknown18 = 1u << 18,
-            Unknown19 = 1u << 19,
-            Unknown20 = 1u << 20,
-            Unknown21 = 1u << 21,
-            Unknown22 = 1u << 22,
-            Unknown23 = 1u << 23,
-            Unknown24 = 1u << 24,
-            Unknown25 = 1u << 25,
-            Unknown26 = 1u << 26,
-            Unknown27 = 1u << 27,
-            Unknown28 = 1u << 28,
-            Unknown29 = 1u << 29,
-            Unknown30 = 1u << 30,
-            Unknown31 = 1u << 31,
-        }
-
-        public struct Entry
-        {
-            public string Name;
-            public uint NameHash;
-            public uint Type;
-            public uint DirectoryNameHash;
-            public EntryFlags Flags;
-            public long DataOffset;
-            public uint DataCompressedSize;
-            public uint DataUncompressedSize;
-        }
-
-        private struct RawEntry
-        {
-            public uint NameHash;
-            public uint Type;
-            public uint DirectoryNameHash;
-            public EntryFlags Flags;
-            public long DataOffset;
-            public uint DataCompressedSize;
-            public uint DataUncompressedSize;
-            public uint Reserved; // BAADF00D
-
-            internal static RawEntry Read(Stream input, Endian endian)
-            {
-                RawEntry instance;
-                instance.NameHash = input.ReadValueU32(endian);
-                instance.Type = input.ReadValueU32(endian);
-                instance.DirectoryNameHash = input.ReadValueU32(endian);
-                instance.Flags = (EntryFlags)input.ReadValueU32(endian);
-                instance.DataOffset = input.ReadValueS64(endian);
-                instance.DataCompressedSize = input.ReadValueU32(endian);
-                instance.DataUncompressedSize = input.ReadValueU32(endian);
-                instance.Reserved = input.ReadValueU32(endian);
-                return instance;
-            }
+            return (ArchiveType)input.ReadValueU32(endian);
         }
     }
 }

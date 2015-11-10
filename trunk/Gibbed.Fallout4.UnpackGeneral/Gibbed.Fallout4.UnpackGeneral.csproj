@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E9023FB3-195C-40A9-8393-F88DCFD4B1BA}</ProjectGuid>
+    <ProjectGuid>{C8345511-83A5-4F12-96F6-2670327C3A6F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gibbed.Fallout4.Unpack</RootNamespace>
-    <AssemblyName>Gibbed.Fallout4.Unpack</AssemblyName>
+    <RootNamespace>Gibbed.Fallout4.UnpackGeneral</RootNamespace>
+    <AssemblyName>Gibbed.Fallout4.UnpackGeneral</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -53,14 +53,6 @@
     <ProjectReference Include="..\Gibbed.Fallout4.FileFormats\Gibbed.Fallout4.FileFormats.csproj">
       <Project>{855E7107-29CC-408B-B9D6-E1C28F20247A}</Project>
       <Name>Gibbed.Fallout4.FileFormats</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gibbed.Fallout4.UnpackGeneral\Gibbed.Fallout4.UnpackGeneral.csproj">
-      <Project>{C8345511-83A5-4F12-96F6-2670327C3A6F}</Project>
-      <Name>Gibbed.Fallout4.UnpackGeneral</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gibbed.Fallout4.UnpackTexture\Gibbed.Fallout4.UnpackTexture.csproj">
-      <Project>{85DEBD18-E82B-4E46-9DBC-0E92125D5279}</Project>
-      <Name>Gibbed.Fallout4.UnpackTexture</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj">
       <Project>{047857BA-DAA3-4CA7-AFB8-A1B082B28C6A}</Project>
