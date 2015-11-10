@@ -22,14 +22,18 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Gibbed.Fallout4.FileFormats;
+using Gibbed.IO;
+using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using NDesk.Options;
 
-namespace Gibbed.Fallout4.Unpack
+namespace Gibbed.Fallout4.UnpackGeneral
 {
-    internal class Program
+    public class Program
     {
         private static string GetExecutableName()
         {
@@ -87,27 +91,72 @@ namespace Gibbed.Fallout4.Unpack
 
             using (var input = File.OpenRead(inputPath))
             {
-                var basePosition = input.Position;
-                var type = ArchiveFile.ReadType(input);
-                input.Position = basePosition;
+                Unpack(input, filter, outputPath, overwriteFiles, verbose);
+            }
+        }
 
-                switch (type)
+        public static void Unpack(Stream input, Regex filter, string outputPath, bool overwriteFiles, bool verbose)
+        {
+            var archive = new GeneralArchiveFile();
+            archive.Deserialize(input);
+
+            var entries = archive.Entries.ToArray();
+
+            long current = 0;
+            long total = entries.Length;
+            var padding = total.ToString(CultureInfo.InvariantCulture).Length;
+
+            foreach (var entry in entries)
+            {
+                current++;
+
+                var entryName = entry.Name;
+                if (filter != null && filter.IsMatch(entryName) == false)
                 {
-                    case ArchiveType.General:
-                    {
-                        UnpackGeneral.Program.Unpack(input, filter, outputPath, overwriteFiles, verbose);
-                        break;
-                    }
+                    continue;
+                }
 
-                    case ArchiveType.TextureDX10:
-                    {
-                        UnpackTexture.Program.Unpack(input, filter, outputPath, overwriteFiles, verbose);
-                        break;
-                    }
+                if (entryName.StartsWith("/") == true)
+                {
+                    entryName = entryName.Substring(1);
+                }
+                entryName = entryName.Replace('/', Path.DirectorySeparatorChar);
 
-                    default:
+                var entryPath = Path.Combine(outputPath, entryName);
+                if (overwriteFiles == false && File.Exists(entryPath) == true)
+                {
+                    continue;
+                }
+
+                if (verbose == true)
+                {
+                    Console.WriteLine(
+                        "[{0}/{1}] {2}",
+                        current.ToString(CultureInfo.InvariantCulture).PadLeft(padding),
+                        total,
+                        entryName);
+                }
+
+                // TODO(rick): validation of entry hashes (name & directory)
+
+                var entryDirectory = Path.GetDirectoryName(entryPath);
+                if (entryDirectory != null)
+                {
+                    Directory.CreateDirectory(entryDirectory);
+                }
+
+                using (var output = File.Create(entryPath))
+                {
+                    if (entry.DataCompressedSize == 0)
                     {
-                        throw new NotSupportedException();
+                        input.Seek(entry.DataOffset, SeekOrigin.Begin);
+                        output.WriteFromStream(input, entry.DataUncompressedSize);
+                    }
+                    else
+                    {
+                        input.Seek(entry.DataOffset, SeekOrigin.Begin);
+                        var zlib = new InflaterInputStream(input);
+                        output.WriteFromStream(zlib, entry.DataUncompressedSize);
                     }
                 }
             }

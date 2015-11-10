@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchiveFile.cs" />
+    <Compile Include="ArchiveType.cs" />
+    <Compile Include="TextureDX10ArchiveFile.cs" />
+    <Compile Include="GeneralArchiveFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
