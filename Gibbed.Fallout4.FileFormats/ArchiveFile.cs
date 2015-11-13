@@ -30,12 +30,19 @@ namespace Gibbed.Fallout4.FileFormats
     {
         public const uint Signature = 0x58445442; // 'BTDX'
 
+        private readonly System.Text.Encoding _Encoding;
         private readonly ArchiveType _Type;
         private Endian _Endian;
 
         public ArchiveFile(ArchiveType type)
         {
+            this._Encoding = System.Text.Encoding.GetEncoding(1252);
             this._Type = type;
+        }
+
+        public System.Text.Encoding Encoding
+        {
+            get { return this._Encoding; }
         }
 
         public Endian Endian
