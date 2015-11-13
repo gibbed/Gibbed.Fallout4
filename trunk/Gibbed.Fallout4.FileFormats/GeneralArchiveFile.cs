@@ -45,6 +45,8 @@ namespace Gibbed.Fallout4.FileFormats
 
         public override void Deserialize(Stream input)
         {
+            var encoding = this.Encoding;
+
             var basePosition = input.Position;
             base.Deserialize(input);
             var endian = this.Endian;
@@ -65,7 +67,7 @@ namespace Gibbed.Fallout4.FileFormats
                 for (int i = 0; i < entryCount; i++)
                 {
                     var nameLength = input.ReadValueU16(endian);
-                    var name = input.ReadString(nameLength, Encoding.ASCII);
+                    var name = input.ReadString(nameLength, encoding);
                     entryNames[i] = name;
                 }
             }
