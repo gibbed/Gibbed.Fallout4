@@ -100,8 +100,8 @@ namespace Gibbed.Fallout4.FileFormats
                     Type = rawEntry.Type,
                     DirectoryNameHash = rawEntry.DirectoryNameHash,
                     Unknown0C = rawEntry.Unknown0C,
-                    Width = rawEntry.Width,
                     Height = rawEntry.Height,
+                    Width = rawEntry.Width,
                     MipMapCount = rawEntry.MipMapCount,
                     Format = rawEntry.Format,
                     Unknown16 = rawEntry.Unknown16,
@@ -121,8 +121,8 @@ namespace Gibbed.Fallout4.FileFormats
             public uint Type;
             public uint DirectoryNameHash;
             public byte Unknown0C;
-            public ushort Width;
             public ushort Height;
+            public ushort Width;
             public byte MipMapCount;
             public byte Format;
             public byte Unknown16;
@@ -145,8 +145,8 @@ namespace Gibbed.Fallout4.FileFormats
             public uint Type;
             public uint DirectoryNameHash;
             public byte Unknown0C;
-            public ushort Width;
             public ushort Height;
+            public ushort Width;
             public byte MipMapCount;
             public byte Format;
             public byte Unknown16;
@@ -162,8 +162,8 @@ namespace Gibbed.Fallout4.FileFormats
                 instance.Unknown0C = input.ReadValueU8();
                 var entryCount = input.ReadValueU8();
                 var entrySize = input.ReadValueU16(endian);
-                instance.Width = input.ReadValueU16(endian);
                 instance.Height = input.ReadValueU16(endian);
+                instance.Width = input.ReadValueU16(endian);
                 instance.MipMapCount = input.ReadValueU8();
                 instance.Format = input.ReadValueU8();
                 instance.Unknown16 = input.ReadValueU8();
