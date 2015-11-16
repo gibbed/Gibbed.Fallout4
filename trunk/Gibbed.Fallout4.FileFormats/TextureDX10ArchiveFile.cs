@@ -23,7 +23,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Gibbed.IO;
 
 namespace Gibbed.Fallout4.FileFormats
