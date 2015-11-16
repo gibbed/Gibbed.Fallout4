@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Fallout4.UnpackTextu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Squish", "Gibbed.Squish\Gibbed.Squish.csproj", "{242D0738-AA4C-4C9C-A218-891A8F55559C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Fallout4.ConvertMaterial", "Gibbed.Fallout4.ConvertMaterial\Gibbed.Fallout4.ConvertMaterial.csproj", "{01873116-7A77-48F0-B578-23FECD2D0A3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Fallout4.ConvertEffectMaterial", "Gibbed.Fallout4.ConvertEffectMaterial\Gibbed.Fallout4.ConvertEffectMaterial.csproj", "{BB9168C8-BBAB-43AA-9042-C7D54E43376A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +101,26 @@ Global
 		{242D0738-AA4C-4C9C-A218-891A8F55559C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{242D0738-AA4C-4C9C-A218-891A8F55559C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{242D0738-AA4C-4C9C-A218-891A8F55559C}.Release|x86.ActiveCfg = Release|Any CPU
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Debug|x86.ActiveCfg = Debug|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Debug|x86.Build.0 = Debug|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Release|Any CPU.ActiveCfg = Release|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Release|x86.ActiveCfg = Release|x86
+		{01873116-7A77-48F0-B578-23FECD2D0A3A}.Release|x86.Build.0 = Release|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Debug|x86.ActiveCfg = Debug|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Debug|x86.Build.0 = Debug|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|Any CPU.ActiveCfg = Release|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|x86.ActiveCfg = Release|x86
+		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
