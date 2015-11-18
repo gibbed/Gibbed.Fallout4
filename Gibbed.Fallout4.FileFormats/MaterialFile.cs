@@ -219,7 +219,7 @@ namespace Gibbed.Fallout4.FileFormats
         }
 
         [JsonConverter(typeof(StringColorConverter))]
-        [JsonProperty("sSpecularEnabled")]
+        [JsonProperty("cSpecularColor")]
         public uint SpecularColor
         {
             get { return this._SpecularColor; }
