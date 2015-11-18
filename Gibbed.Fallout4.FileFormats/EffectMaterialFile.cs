@@ -31,7 +31,7 @@ namespace Gibbed.Fallout4.FileFormats
     [JsonObject(MemberSerialization.OptIn)]
     public class EffectMaterialFile : BaseMaterialFile
     {
-        public const uint Signature = 0x4D534742;
+        public const uint Signature = 0x4D454742;
 
         #region Fields
         private string _BaseTexture;
