@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -115,7 +116,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.OBND:
                 {
                     this.MarkField(3);
-                    Assert(size == 12);
+                    Debug.Assert(size == 12);
                     break;
                 }
 
@@ -135,7 +136,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.DNAM:
                 {
                     this.MarkField(6);
-                    Assert((reader.Version >= 107 && size == 16) || (reader.Version < 107 && size == 8));
+                    Debug.Assert((reader.Version >= 107 && size == 16) || (reader.Version < 107 && size == 8));
 
                     var value1 = reader.ReadValueF32();
                     var value2 = reader.ReadValueU32();
@@ -154,7 +155,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.MNAM:
                 {
                     this.MarkField(7);
-                    Assert(size == 1040);
+                    Debug.Assert(size == 1040);
                     break;
                 }
 
@@ -168,14 +169,14 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.PTRN:
                 {
                     this.MarkField(9);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.MODS:
                 {
                     this.MarkField(10);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -189,26 +190,29 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.MODC:
                 {
                     this.MarkField(12);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.VMAD:
                 {
                     this.MarkField(13);
-                    Assert(size == 36);
+                    Debug.Assert(size == 36);
                     break;
                 }
 
                 case FieldType.FTYP:
                 {
                     this.MarkField(14);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
-            }
 
-            throw new NotSupportedException();
+                default:
+                {
+                    throw new NotSupportedException();
+                }
+            }
         }
 
         internal override void WriteFields(IFormWriter writer)

@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -152,7 +153,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.MNAM:
                 {
                     this.MarkField(6);
-                    Assert(size > 0 && (size % 4) == 0);
+                    Debug.Assert(size > 0 && (size % 4) == 0);
                     var keywordIds = new uint[size / 4];
                     for (int i = 0; i < keywordIds.Length; i++)
                     {
@@ -166,7 +167,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.LNAM:
                 {
                     this.MarkField(7);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._LNAM = reader.ReadValueU32();
                     break;
                 }

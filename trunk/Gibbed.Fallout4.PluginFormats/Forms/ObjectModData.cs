@@ -27,6 +27,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
 {
     public class ObjectModData : Field
     {
+        #region Fields
         private bool _Unknown1B;
         private bool _Unknown1C;
         private FormType _Unknown18;
@@ -37,6 +38,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
         private readonly List<Tuple<uint, uint>> _Unknown98;
         private readonly List<Tuple<uint, byte, bool, bool>> _Includes;
         private readonly List<Modifier> _Modifiers;
+        #endregion
 
         public ObjectModData()
         {
@@ -46,6 +48,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
             this._Modifiers = new List<Modifier>();
         }
 
+        #region Properties
         public bool Unknown1B
         {
             get { return this._Unknown1B; }
@@ -101,6 +104,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
         {
             get { return this._Modifiers; }
         }
+        #endregion
 
         internal override void Read(IFieldReader reader)
         {

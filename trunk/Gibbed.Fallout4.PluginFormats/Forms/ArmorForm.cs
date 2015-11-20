@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -139,14 +140,14 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.OBND:
                 {
                     this.MarkField(3);
-                    Assert(size == 12);
+                    Debug.Assert(size == 12);
                     break;
                 }
 
                 case FieldType.PTRN:
                 {
                     this.MarkField(4);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -166,21 +167,21 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.BOD2:
                 {
                     this.MarkField(7);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.RNAM:
                 {
                     this.MarkField(8);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.KSIZ:
                 {
                     this.MarkField(9);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -193,56 +194,56 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.INRD:
                 {
                     this.MarkField(11);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.INDX:
                 {
                     //this.MarkField(12);
-                    Assert(size == 2);
+                    Debug.Assert(size == 2);
                     break;
                 }
 
                 case FieldType.MODL:
                 {
                     //this.MarkField(13);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.DATA:
                 {
                     this.MarkField(14);
-                    Assert(size == 12);
+                    Debug.Assert(size == 12);
                     break;
                 }
 
                 case FieldType.FNAM:
                 {
                     this.MarkField(15);
-                    Assert(size == 8);
+                    Debug.Assert(size == 8);
                     break;
                 }
 
                 case FieldType.DAMA:
                 {
                     this.MarkField(16);
-                    Assert(size == 8 || size == 16);
+                    Debug.Assert(size == 8 || size == 16);
                     break;
                 }
 
                 case FieldType.APPR:
                 {
                     this.MarkField(17);
-                    Assert(size == 4 || size == 8 || size == 16 || size == 28);
+                    Debug.Assert(size == 4 || size == 8 || size == 16 || size == 28);
                     break;
                 }
 
                 case FieldType.OBTE:
                 {
                     this.MarkField(18);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -256,21 +257,21 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.OBTF:
                 {
                     //this.MarkField(20);
-                    Assert(size == 0);
+                    Debug.Assert(size == 0);
                     break;
                 }
 
                 case FieldType.STOP:
                 {
                     this.MarkField(21);
-                    Assert(size == 0);
+                    Debug.Assert(size == 0);
                     break;
                 }
 
                 case FieldType.EITM:
                 {
                     this.MarkField(22);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -290,35 +291,35 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.ETYP:
                 {
                     this.MarkField(25);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.MO2S:
                 {
                     this.MarkField(26);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.YNAM:
                 {
                     this.MarkField(27);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.ZNAM:
                 {
                     this.MarkField(28);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case FieldType.MO4S:
                 {
                     this.MarkField(29);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
@@ -331,7 +332,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.BAMT:
                 {
                     this.MarkField(31);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
