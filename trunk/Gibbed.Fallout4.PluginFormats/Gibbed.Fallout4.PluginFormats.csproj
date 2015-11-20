@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{699D7BEF-0001-4840-9C6A-71C87B4FE473}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gibbed.Fallout4.PluginFormats</RootNamespace>
+    <AssemblyName>Gibbed.Fallout4.PluginFormats</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\other\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FieldReader.cs" />
+    <Compile Include="BaseForm.cs" />
+    <Compile Include="FieldWriter.cs" />
+    <Compile Include="Form.cs" />
+    <Compile Include="FormFlags.cs" />
+    <Compile Include="FormReader.cs" />
+    <Compile Include="Forms\ArmorForm.cs" />
+    <Compile Include="Forms\ConditionData.cs" />
+    <Compile Include="Forms\ConstructibleObjectForm.cs" />
+    <Compile Include="Forms\ListForm.cs" />
+    <Compile Include="Forms\PluginForm.cs" />
+    <Compile Include="Forms\KeywordForm.cs" />
+    <Compile Include="Forms\MaterialSwapForm.cs" />
+    <Compile Include="Forms\ObjectModData.cs" />
+    <Compile Include="Forms\ObjectModForm.cs" />
+    <Compile Include="Forms\PluginHeader.cs" />
+    <Compile Include="Forms\StaticForm.cs" />
+    <Compile Include="FormType.cs" />
+    <Compile Include="FormTypes.cs" />
+    <Compile Include="FormWriter.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="IFieldReader.cs" />
+    <Compile Include="IFieldWriter.cs" />
+    <Compile Include="IFormReader.cs" />
+    <Compile Include="IFormWriter.cs" />
+    <Compile Include="LocalizedString.cs" />
+    <Compile Include="PluginReader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RawForm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gibbed.IO\Gibbed.IO.csproj">
+      <Project>{047857BA-DAA3-4CA7-AFB8-A1B082B28C6A}</Project>
+      <Name>Gibbed.IO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
