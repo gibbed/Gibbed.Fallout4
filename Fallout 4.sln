@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FDC838
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Fallout4.PluginFormats", "Gibbed.Fallout4.PluginFormats\Gibbed.Fallout4.PluginFormats.csproj", "{699D7BEF-0001-4840-9C6A-71C87B4FE473}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -128,6 +130,16 @@ Global
 		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|x86.ActiveCfg = Release|x86
 		{BB9168C8-BBAB-43AA-9042-C7D54E43376A}.Release|x86.Build.0 = Release|x86
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{699D7BEF-0001-4840-9C6A-71C87B4FE473}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
