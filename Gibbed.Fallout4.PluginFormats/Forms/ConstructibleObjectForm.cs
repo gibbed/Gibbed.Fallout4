@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -168,7 +169,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.FVPA:
                 {
                     this.MarkField(2);
-                    Assert(size > 0 && (size % 8) == 0);
+                    Debug.Assert(size > 0 && (size % 8) == 0);
                     var ingredients = new Ingredient[size / 8];
                     for (int i = 0; i < ingredients.Length; i++)
                     {
@@ -183,7 +184,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
 
                 case FieldType.CTDA:
                 {
-                    Assert(size == 32);
+                    Debug.Assert(size == 32);
                     this._Conditions.Add(ConditionData.Read(reader));
                     break;
                 }
@@ -191,7 +192,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.CNAM:
                 {
                     this.MarkField(4);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._OutputId = reader.ReadValueU32();
                     break;
                 }
@@ -217,7 +218,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.BNAM:
                 {
                     this.MarkField(6);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._BenchKeywordId = reader.ReadValueU32();
                     break;
                 }
@@ -225,7 +226,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.FNAM:
                 {
                     this.MarkField(7);
-                    Assert(size > 0 && (size % 4) == 0);
+                    Debug.Assert(size > 0 && (size % 4) == 0);
                     var ids = new uint[size / 4];
                     for (int i = 0; i < ids.Length; i++)
                     {
@@ -239,7 +240,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.YNAM:
                 {
                     this.MarkField(8);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._PickupSoundId = reader.ReadValueU32();
                     break;
                 }
@@ -247,7 +248,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.ZNAM:
                 {
                     this.MarkField(9);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._PutdownSoundId = reader.ReadValueU32();
                     break;
                 }
@@ -255,7 +256,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.ANAM:
                 {
                     this.MarkField(11);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._ArtId = reader.ReadValueU32();
                     break;
                 }

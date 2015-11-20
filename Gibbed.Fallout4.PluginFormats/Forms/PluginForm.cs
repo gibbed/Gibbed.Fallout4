@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -88,7 +89,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case Fields.HEDR:
                 {
                     this.MarkField(0);
-                    Assert(size == 12);
+                    Debug.Assert(size == 12);
                     this._Header = reader.ReadObject<PluginHeader>();
                     break;
                 }
@@ -126,14 +127,14 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case Fields.INTV:
                 {
                     this.MarkField(6);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 
                 case Fields.INCC:
                 {
                     this.MarkField(7);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     break;
                 }
 

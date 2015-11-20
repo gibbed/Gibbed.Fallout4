@@ -132,13 +132,5 @@ namespace Gibbed.Fallout4.PluginFormats
 
         internal abstract void ReadFields(IFormReader reader);
         internal abstract void WriteFields(IFormWriter writer);
-
-        protected static void Assert(bool value)
-        {
-            if (value == false)
-            {
-                throw new InvalidOperationException();
-            }
-        }
     }
 }

@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Diagnostics;
 
 namespace Gibbed.Fallout4.PluginFormats.Forms
 {
@@ -95,7 +96,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.CNAM:
                 {
                     this.MarkField(2);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._CNAM = reader.ReadValueU32();
                     break;
                 }
@@ -103,7 +104,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.TNAM:
                 {
                     this.MarkField(3);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._TNAM = reader.ReadValueU32();
                     break;
                 }
@@ -118,7 +119,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.DATA:
                 {
                     this.MarkField(5);
-                    Assert(size == 4);
+                    Debug.Assert(size == 4);
                     this._DATA = reader.ReadValueU32();
                     break;
                 }
