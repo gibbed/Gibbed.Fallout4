@@ -162,6 +162,13 @@ namespace Gibbed.Fallout4.UnpackTexture
                     return pixelFormat;
                 }
 
+                case 74: // DXGI_FORMAT_BC2_UNORM
+                {
+                    var pixelFormat = new Squish.DDS.PixelFormat();
+                    pixelFormat.Initialise(Squish.DDS.FileFormat.DXT3);
+                    return pixelFormat;
+                }
+
                 case 77: // DXGI_FORMAT_BC3_UNORM
                 {
                     var pixelFormat = new Squish.DDS.PixelFormat();
