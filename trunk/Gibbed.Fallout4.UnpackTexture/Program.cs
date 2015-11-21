@@ -169,6 +169,14 @@ namespace Gibbed.Fallout4.UnpackTexture
                     return pixelFormat;
                 }
 
+                case 87: // DXGI_FORMAT_B8G8R8A8_UNORM
+                {
+                    var pixelFormat = new Squish.DDS.PixelFormat();
+                    pixelFormat.Initialise(Squish.DDS.FileFormat.A8R8G8B8);
+                    return pixelFormat;
+                }
+
+                case 61: // DXGI_FORMAT_R8_UNORM
                 case 83: // DXGI_FORMAT_BC5_UNORM
                 {
                     var pixelFormat = new Squish.DDS.PixelFormat();
@@ -177,12 +185,6 @@ namespace Gibbed.Fallout4.UnpackTexture
                     return pixelFormat;
                 }
 
-                case 87: // DXGI_FORMAT_B8G8R8A8_UNORM
-                {
-                    var pixelFormat = new Squish.DDS.PixelFormat();
-                    pixelFormat.Initialise(Squish.DDS.FileFormat.A8R8G8B8);
-                    return pixelFormat;
-                }
             }
 
             throw new NotSupportedException();
