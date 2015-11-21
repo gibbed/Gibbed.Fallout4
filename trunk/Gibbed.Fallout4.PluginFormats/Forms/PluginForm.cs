@@ -42,6 +42,18 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
         }
 
         #region Properties
+        public bool IsMaster
+        {
+            get { return this.HasFlag(PluginFormFlags.IsMaster); }
+            set { this.SetFlag(PluginFormFlags.IsMaster, value); }
+        }
+
+        public bool IsLocalized
+        {
+            get { return this.HasFlag(PluginFormFlags.IsLocalized); }
+            set { this.SetFlag(PluginFormFlags.IsLocalized, value); }
+        }
+
         public PluginHeader Header
         {
             get { return this._Header; }

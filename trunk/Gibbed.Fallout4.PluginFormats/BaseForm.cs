@@ -30,20 +30,43 @@ namespace Gibbed.Fallout4.PluginFormats
     public abstract class BaseForm
     {
         #region Fields
-        private FormFlags _Flags;
+        private uint _Flags;
         private uint _Id;
         private uint _Revision;
         private ushort _Unknown;
         #endregion
 
+        protected bool HasFlag(uint flag)
+        {
+            return (this._Flags & flag) == flag;
+        }
+
+        protected void SetFlag(uint flag, bool set)
+        {
+            if (set == true)
+            {
+                this.Flags |= flag;
+            }
+            else
+            {
+                this.Flags &= ~flag;
+            }
+        }
+
         #region Properties
         public abstract FormType Type { get; }
         public abstract ushort Version { get; }
 
-        public FormFlags Flags
+        public uint Flags
         {
             get { return this._Flags; }
             set { this._Flags = value; }
+        }
+
+        public bool IsCompressed
+        {
+            get { return this.HasFlag(BaseFormFlags.IsCompressed); }
+            set { this.SetFlag(BaseFormFlags.IsCompressed, value); }
         }
 
         public uint Id
@@ -77,7 +100,7 @@ namespace Gibbed.Fallout4.PluginFormats
 
                 output.WriteValueU32((uint)this.Type, endian);
                 output.WriteValueU32((uint)data.Length, endian);
-                output.WriteValueU32((uint)this._Flags, endian);
+                output.WriteValueU32(this._Flags, endian);
                 output.WriteValueU32(this._Id, endian);
                 output.WriteValueU32(this._Revision, 0);
                 output.WriteValueU16(this.Version, endian);
@@ -91,7 +114,7 @@ namespace Gibbed.Fallout4.PluginFormats
         {
             var type = (FormType)input.ReadValueU32(endian);
             var size = input.ReadValueU32(endian);
-            var flags = (FormFlags)input.ReadValueU32(endian);
+            var flags = input.ReadValueU32(endian);
             var id = input.ReadValueU32(endian);
             var revision = input.ReadValueU32(endian);
             var version = input.ReadValueU16(endian);
@@ -102,13 +125,13 @@ namespace Gibbed.Fallout4.PluginFormats
                 throw new FormatException();
             }
 
-            this._Flags = flags & ~FormFlags.IsCompressed;
+            this._Flags = flags;
             this._Id = id;
             this._Revision = revision;
             this._Unknown = unknown;
 
             byte[] bytes;
-            if ((flags & FormFlags.IsCompressed) == 0)
+            if ((flags & BaseFormFlags.IsCompressed) == 0)
             {
                 bytes = input.ReadBytes(size);
             }
