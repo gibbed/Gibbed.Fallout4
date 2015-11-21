@@ -77,7 +77,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms.ObjectMod
         }
         #endregion
 
-        internal static BaseValue ReadValue(ValueType type, IFieldReader reader)
+        private static BaseValue ReadValue(ValueType type, IFieldReader reader)
         {
             switch (type)
             {
@@ -153,5 +153,97 @@ namespace Gibbed.Fallout4.PluginFormats.Forms.ObjectMod
                                  this._Value,
                                  this._Factor);
         }
+
+        #region Helpers
+        public static Property Set(ushort index, int value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new IntValue(value1, value2), factor);
+        }
+
+        public static Property Set(ushort index, float value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new FloatValue(value1, value2), factor);
+        }
+
+        public static Property Set(ushort index, bool value1, bool value2 = false, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new BoolValue(value1, value2), factor);
+        }
+
+        public static Property Set(ushort index, uint value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new IdAndIntValue(value1, value2), factor);
+        }
+
+        public static Property Set(ushort index, uint value1, uint value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new EnumValue(value1, value2), factor);
+        }
+
+        public static Property Set(ushort index, uint value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Set, new IdAndFloatValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, int value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new IntValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, float value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new FloatValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, bool value1, bool value2 = false, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new BoolValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, uint value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new IdAndIntValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, uint value1, uint value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new EnumValue(value1, value2), factor);
+        }
+
+        public static Property Multiply(ushort index, uint value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Multiply, new IdAndFloatValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, int value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new IntValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, float value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new FloatValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, bool value1, bool value2 = false, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new BoolValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, uint value1, int value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new IdAndIntValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, uint value1, uint value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new EnumValue(value1, value2), factor);
+        }
+
+        public static Property Add(ushort index, uint value1, float value2 = 0, float factor = 0.0f)
+        {
+            return new Property(index, FunctionType.Add, new IdAndFloatValue(value1, value2), factor);
+        }
+        #endregion
     }
 }
