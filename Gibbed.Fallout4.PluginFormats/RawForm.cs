@@ -30,8 +30,9 @@ namespace Gibbed.Fallout4.PluginFormats
 {
     public class RawForm
     {
+        #region Fields
         private FormType _Type;
-        private FormFlags _Flags;
+        private uint _Flags;
         private uint _Id;
         private uint _Revision;
         private ushort _Version;
@@ -39,6 +40,7 @@ namespace Gibbed.Fallout4.PluginFormats
 
         private string _EditorId;
         private readonly List<Tuple<uint, byte[]>> _Fields;
+        #endregion
 
         public RawForm()
         {
@@ -46,10 +48,53 @@ namespace Gibbed.Fallout4.PluginFormats
             this._Fields = new List<Tuple<uint, byte[]>>();
         }
 
+        #region Properties
         public FormType Type
         {
             get { return this._Type; }
         }
+
+        public uint Flags
+        {
+            get { return this._Flags; }
+            set { this._Flags = value; }
+        }
+
+        public uint Id
+        {
+            get { return this._Id; }
+            set { this._Id = value; }
+        }
+
+        public uint Revision
+        {
+            get { return this._Revision; }
+            set { this._Revision = value; }
+        }
+
+        public ushort Version
+        {
+            get { return this._Version; }
+            set { this._Version = value; }
+        }
+
+        public ushort Unknown
+        {
+            get { return this._Unknown; }
+            set { this._Unknown = value; }
+        }
+
+        public string EditorId
+        {
+            get { return this._EditorId; }
+            set { this._EditorId = value; }
+        }
+
+        public List<Tuple<uint, byte[]>> Fields
+        {
+            get { return this._Fields; }
+        }
+        #endregion
 
         private enum FieldType : uint
         {
@@ -84,20 +129,20 @@ namespace Gibbed.Fallout4.PluginFormats
         {
             var type = (FormType)input.ReadValueU32(endian);
             var size = input.ReadValueU32(endian);
-            var flags = (FormFlags)input.ReadValueU32(endian);
+            var flags = input.ReadValueU32(endian);
             var id = input.ReadValueU32(endian);
             var revision = input.ReadValueU32(endian);
             var version = input.ReadValueU16(endian);
             var unknown = input.ReadValueU16(endian);
 
             this._Type = type;
-            this._Flags = flags & ~FormFlags.IsCompressed;
+            this._Flags = flags;
             this._Id = id;
             this._Revision = revision;
             this._Unknown = unknown;
 
             byte[] bytes;
-            if ((flags & FormFlags.IsCompressed) == 0)
+            if ((flags & BaseFormFlags.IsCompressed) == 0)
             {
                 bytes = input.ReadBytes(size);
             }

@@ -34,7 +34,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
         private LocalizedString _Description;
         private readonly List<uint> _KeywordIds;
         private string _EditorFilter;
-        private ObjectModData _Data;
+        private ObjectMod.Data _Data;
         private uint _LNAM;
         #endregion
 
@@ -74,7 +74,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
             get { return this._KeywordIds; }
         }
 
-        public ObjectModData Data
+        public ObjectMod.Data Data
         {
             get { return this._Data; }
             set { this._Data = value; }
@@ -146,7 +146,7 @@ namespace Gibbed.Fallout4.PluginFormats.Forms
                 case FieldType.DATA:
                 {
                     this.MarkField(5);
-                    this._Data = reader.ReadObject<ObjectModData>();
+                    this._Data = reader.ReadObject<ObjectMod.Data>();
                     break;
                 }
 

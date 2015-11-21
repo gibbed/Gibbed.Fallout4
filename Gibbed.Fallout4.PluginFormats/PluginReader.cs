@@ -54,7 +54,7 @@ namespace Gibbed.Fallout4.PluginFormats
                 throw new FormatException();
             }
 
-            this._IsLocalized = (header.Flags & FormFlags.IsLocalized) != 0;
+            this._IsLocalized = header.IsLocalized;
         }
 
         public IEnumerable<RawForm> ReadRawForms(FormType type)
@@ -215,7 +215,7 @@ namespace Gibbed.Fallout4.PluginFormats
                         }
 
                         var formSize = input.ReadValueU32(endian);
-                        var formFlags = (FormFlags)input.ReadValueU32(endian);
+                        var formFlags = input.ReadValueU32(endian);
                         var formId = input.ReadValueU32(endian);
                         input.Seek(8 + formSize, SeekOrigin.Current);
                         forms.Add(formId, new Tuple<FormType, long>(type, position));
