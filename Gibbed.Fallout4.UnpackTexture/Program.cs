@@ -151,6 +151,8 @@ namespace Gibbed.Fallout4.UnpackTexture
             }
         }
 
+        // https://msdn.microsoft.com/en-us/library/windows/desktop/bb173059.aspx "DXGI_FORMAT enumeration"
+        // https://msdn.microsoft.com/en-us/library/windows/desktop/cc308051.aspx "Legacy Formats: Map Direct3D 9 Formats to Direct3D 10"
         private static Squish.DDS.PixelFormat GetPixelFormat(TextureDX10ArchiveFile.Entry entry)
         {
             switch (entry.Format)
@@ -185,13 +187,13 @@ namespace Gibbed.Fallout4.UnpackTexture
 
                 case 61: // DXGI_FORMAT_R8_UNORM
                 case 83: // DXGI_FORMAT_BC5_UNORM
+                case 98: // DXGI_FORMAT_BC7_UNORM
                 {
                     var pixelFormat = new Squish.DDS.PixelFormat();
                     pixelFormat.Size = pixelFormat.GetSize();
                     pixelFormat.FourCC = 0x30315844; // 'DX10'
                     return pixelFormat;
                 }
-
             }
 
             throw new NotSupportedException();
